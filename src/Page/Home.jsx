@@ -1,7 +1,8 @@
+
 export default function Home() {
     return (
-        <div>
-            this is the home section
-        </div>
+        <section>
+            khai
+        </section>
     )
 }
