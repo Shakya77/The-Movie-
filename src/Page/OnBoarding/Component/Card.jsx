@@ -8,7 +8,7 @@ export default function Card() {
     const [search, setSearch] = useState("");
 
     const handleNavigate = () => {
-        navigate("/home?keyword=adisha");
+        navigate("/home");
     };
 
     const handleSearch = () => {
@@ -48,7 +48,7 @@ export default function Card() {
                     {/* View Full Site Button */}
                     <div
                         onClick={handleNavigate}
-                        className="flex items-center justify-center gap-2 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-3 rounded-xl hover:scale-105 transition-transform cursor-pointer max-w-xs"
+                        className="flex items-center justify-center gap-2 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 px-3 py-3 rounded-xl hover:scale-105 transition-transform cursor-pointer "
                     >
                         <span>View Full Site</span>
                         <Icon icon="icons8:right-round" className="text-white text-2xl" />
