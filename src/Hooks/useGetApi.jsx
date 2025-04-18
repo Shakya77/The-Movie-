@@ -8,7 +8,9 @@ export default function useGetApi(url) {
     const fetchData = async () => {
         try {
             const myHeaders = new Headers();
-            const apiKey = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZDM5ODVhNjdhMDY1Y2VkNTVjZDE4MWU2NzI3OWE0ZSIsIm5iZiI6MTc0MzQyOTMyNS40Nywic3ViIjoiNjdlYTllY2Q2MjIzNWM2NTgxYzZjMzgxIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.IhS1gQ-lQAVT5IyEOjklJH3qxfCA_U1joWRd82yOVEE";
+            const token = import.meta.env.VITE_API_TOKEN;
+
+            const apiKey = `Bearer ${token}`;
             myHeaders.append("Authorization", apiKey);
             myHeaders.append("Content-Type", "application/json");
 
@@ -25,7 +27,6 @@ export default function useGetApi(url) {
 
             const data = await response.json();
             setData(data);
-            console.log(response)
         } catch (error) {
             setError(error.message || 'Something went wrong');
             // console.log(error)
