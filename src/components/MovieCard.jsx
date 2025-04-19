@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MovieCard = ({ movies, loading, error }) => {
+    const [showLoader, setShowLoader] = useState(true);
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
     const navigate = useNavigate();
 
@@ -9,10 +10,24 @@ const MovieCard = ({ movies, loading, error }) => {
         navigate(`/movie/details/${movieId}`);
     };
 
+    useEffect(() => {
+        if (loading) {
+            const timer = setTimeout(() => {
+                setShowLoader(false);
+            }, 1500); // 1.5 seconds delay
+
+            return () => clearTimeout(timer);
+        } else {
+            setShowLoader(false);
+        }
+    }, [loading]);
+
     return (
-        <div>
-            {loading && (
-                <div className="text-center text-xl text-gray-600">Loading...</div>
+        <div className='w-3/4 mx-auto'>
+            {showLoader && (
+                <div className="flex justify-center items-center h-screen">
+                    <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+                </div>
             )}
 
             {error && (
@@ -20,16 +35,14 @@ const MovieCard = ({ movies, loading, error }) => {
             )}
 
             {movies && movies.length > 0 ? (
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 justify-items-center">
-
+                <div className="flex flex-wrap justify-center items-center gap-4 ">
                     {movies.map((movie) => (
                         <div
                             key={movie.id}
-                            className="flex flex-col items-center cursor-pointer group"
-                            onClick={() => handleMovieClick(movie.id)}
+                            className="flex flex-col items-start m-3 "
                         >
-                            <div className="relative w-[160px] rounded-md overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                            {/* Apply `group` here where width is fixed */}
+                            <div className="relative w-[200px] rounded-md overflow-hidden shadow-md hover:shadow-xl transition duration-300 group">
                                 <img
                                     src={
                                         movie.poster_path
@@ -46,17 +59,26 @@ const MovieCard = ({ movies, loading, error }) => {
                                     <span className="text-yellow-400 font-semibold text-sm">
                                         ⭐ {movie.vote_average}
                                     </span>
+                                    <button
+                                        className="mt-2 p-2 rounded-md text-xs font-semibold bg-green-400 cursor-pointer"
+                                        onClick={() => handleMovieClick(movie.id)}
+                                    >
+                                        View Details
+                                    </button>
                                 </div>
                             </div>
 
                             {/* Title & Year */}
-                            <h3 className="mt-2 text-sm text-center text-white font-semibold group-hover:text-yellow-300">
-                                {movie.title}
-                            </h3>
-                            <span className="text-xs text-gray-400 mt-0.5">
-                                {new Date(movie.release_date).getFullYear()}
-                            </span>
+                            <div className="text-left mt-2">
+                                <h3 className="text-sm text-black font-semibold w-[160px]">
+                                    {movie.title}
+                                </h3>
+                                <span className="text-xs text-gray-400 mt-0.5">
+                                    {new Date(movie.release_date).getFullYear()}
+                                </span>
+                            </div>
                         </div>
+
                     ))}
                 </div>
             ) : (
