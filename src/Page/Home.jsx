@@ -1,4 +1,4 @@
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/Card /HorizontalCard";
 import useGetApi from "../Hooks/useGetApi";
 
 export default function Home() {

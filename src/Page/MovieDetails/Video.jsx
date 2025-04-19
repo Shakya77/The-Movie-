@@ -30,9 +30,6 @@ export default function Video({ movieId }) {
                                     alt={video.name}
                                     className="w-full rounded-xl shadow-lg transition-transform transform group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-xl">
-                                    <span className="text-white text-xl font-semibold">▶ Play</span>
-                                </div>
                             </div>
                         ))}
                     </div>

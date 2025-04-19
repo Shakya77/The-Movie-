@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import useGetApi from '../../Hooks/useGetApi';
 import { useEffect } from 'react';
-import MovieCard from '../../components/MovieCard';
+import MovieCard from '../../components/Card /HorizontalCard';
 
 export default function Search() {
     const location = useLocation();
