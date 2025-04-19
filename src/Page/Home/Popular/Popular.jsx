@@ -6,6 +6,8 @@ export default function PopularMovies() {
     const { data, loading, error } = useGetApi(url);
 
     return (
-        <MovieCard title={'Popular Movies'} movies={data?.results || []} loading={loading} error={error} />
+        <div className="mt-3">
+            <MovieCard title={'Popular Movies'} movies={data?.results || []} loading={loading} error={error} />
+        </div>
     )
 }
