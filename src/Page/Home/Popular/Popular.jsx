@@ -1,4 +1,4 @@
-import MovieCard from "../../../components/Card /HorizontalCard";
+import HorizontalCard from "../../../components/Card /HorizontalCard";
 import useGetApi from "../../../Hooks/useGetApi";
 
 export default function PopularMovies() {
@@ -7,7 +7,7 @@ export default function PopularMovies() {
 
     return (
         <div className="mt-3">
-            <MovieCard title={'Popular Movies'} movies={data?.results || []} loading={loading} error={error} />
+            <HorizontalCard title={'Popular Movies'} movies={data?.results || []} loading={loading} error={error} />
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MovieCard = ({ title, movies, loading, error, week, setWeek }) => {
+const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
     const [showLoader, setShowLoader] = useState(true);
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
     const navigate = useNavigate();
@@ -139,4 +139,4 @@ const MovieCard = ({ title, movies, loading, error, week, setWeek }) => {
     );
 };
 
-export default MovieCard;
+export default HorizontalCard;

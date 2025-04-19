@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useGetApi from "../../Hooks/useGetApi";
 import Video from "./Video";
+import Similar from "../Search/Similar/Similar";
 
 export default function MovieDetails() {
     const { movieId } = useParams();
@@ -27,6 +28,7 @@ export default function MovieDetails() {
                         </div>
                     </div>
                     <Video movieId={movieId} />
+                    <Similar movieId={movieId} />
                 </>
             )}
         </div>

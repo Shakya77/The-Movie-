@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MovieCard from "../../../components/Card /HorizontalCard";
+import HorizontalCard from "../../../components/Card /HorizontalCard";
 import useGetApi from "../../../Hooks/useGetApi";
 
 export default function Trending() {
@@ -8,7 +8,7 @@ export default function Trending() {
     const { data, loading, error } = useGetApi(url);
     return (
         <div className="p-4">
-            <MovieCard
+            <HorizontalCard
                 title="Trending Movies"
                 movies={data?.results || []}
                 loading={loading}
