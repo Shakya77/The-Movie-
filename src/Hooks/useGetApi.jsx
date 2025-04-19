@@ -8,10 +8,7 @@ export default function useGetApi(url) {
     const fetchData = async () => {
         try {
             const myHeaders = new Headers();
-            const token = import.meta.env.VITE_API_TOKEN;
-
-            const apiKey = `Bearer ${token}`;
-            myHeaders.append("Authorization", apiKey);
+            myHeaders.append("Authorization", `Bearer ${import.meta.env.VITE_API_TOKEN}`);
             myHeaders.append("Content-Type", "application/json");
 
             const options = {
@@ -29,7 +26,6 @@ export default function useGetApi(url) {
             setData(data);
         } catch (error) {
             setError(error.message || 'Something went wrong');
-            // console.log(error)
 
         } finally {
             setLoading(false);
