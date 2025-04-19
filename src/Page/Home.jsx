@@ -8,7 +8,6 @@ export default function Home() {
 
     return (
         <div className="">
-            <h1 className="text-3xl font-bold mb-6 text-center">Popular Movies</h1>
             <MovieCard movies={data?.results || []} loading={loading} error={error} />
         </div>
     );
