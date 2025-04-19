@@ -10,7 +10,6 @@ export default function Video({ movieId }) {
         data?.results?.filter(
             (video) => video.site === 'YouTube' && video.type === 'Trailer'
         ) || [];
-
     return (
         <div className="flex flex-col items-center text-center p-5 font-sans">
             {loading && <div className="text-red-500 text-lg font-bold">Loading...</div>}
@@ -46,19 +45,21 @@ export default function Video({ movieId }) {
                     className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
                     onClick={() => setSelectedVideo(null)}
                 >
-                    <div
-                        className="bg-white rounded-xl overflow-hidden w-[90%] max-w-3xl relative"
-                        onClick={e => e.stopPropagation()} // prevent closing when clicking inside
+                    {/* Close Button outside of modal content */}
+                    <button
+                        className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-xl px-3 py-2 text-sm z-10 hover:bg-opacity-70"
+                        onClick={() => setSelectedVideo(null)}
                     >
-                        <button
-                            className="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full px-3 py-1 text-sm"
-                            onClick={() => setSelectedVideo(null)}
-                        >
-                            ✕
-                        </button>
-                        <div className="aspect-video">
+                        ✕
+                    </button>
+
+                    <div
+                        className="bg-white rounded-xl overflow-hidden w-[100%] max-w-7xl relative"
+                        onClick={(e) => e.stopPropagation()} // prevent modal close when clicking inside
+                    >
+                        <div className="w-full h-[80vh] p-0 m-0 bg-black ">
                             <iframe
-                                className="w-full h-full"
+                                className="w-full h-full block"
                                 src={`https://www.youtube.com/embed/${selectedVideo.key}?autoplay=1`}
                                 title={selectedVideo.name}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -68,6 +69,7 @@ export default function Video({ movieId }) {
                     </div>
                 </div>
             )}
+
         </div>
     );
 }
