@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import cardCover from '../../../assets/onboardcover.jpg'; // adjust path
+import cardCover from '../../../assets/onboardcover.jpg';
 import { useState } from "react";
 
 export default function Card() {

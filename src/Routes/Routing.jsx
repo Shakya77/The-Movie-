@@ -1,19 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from '../Page/Home';
-import OnBoarding from '../Page/OnBoarding/OnBoarding';
-import Search from '../Page/Search/Search';
 import MovieDetails from '../Page/MovieDetails/MovieDetails';
+import { lazy, Suspense } from 'react';
 
 export default function Routing() {
+
+    const OnBoarding = lazy(() => import('../Page/OnBoarding/OnBoarding'));
+    const Home = lazy(() => import('../Page/Home/Home'));
+    const Search = lazy(() => import('../Page/Search/Search'));
+
     return (
         <Router>
-            <Routes>
-                <Route path="/" element={<OnBoarding />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/movie/details/:movieId" element={<MovieDetails />} />
-                {/* Add more routes as needed */}
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    <Route path="/" element={<OnBoarding />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/movie/details/:movieId" element={<MovieDetails />} />
+                    {/* Add more routes as needed */}
+                </Routes>
+            </Suspense>
         </Router>
     );
 }

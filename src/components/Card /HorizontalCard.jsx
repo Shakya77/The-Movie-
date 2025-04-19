@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MovieCard = ({ movies, loading, error }) => {
+const MovieCard = ({ title, movies, loading, error, week, setWeek }) => {
     const [showLoader, setShowLoader] = useState(true);
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ const MovieCard = ({ movies, loading, error }) => {
         if (!isDragging) return;
         e.preventDefault();
         const x = e.pageX - scrollRef.current.offsetLeft;
-        const walk = (x - startX) * 2; // scroll speed
+        const walk = (x - startX) * 2;
         scrollRef.current.scrollLeft = scrollLeft - walk;
     };
 
@@ -55,7 +55,29 @@ const MovieCard = ({ movies, loading, error }) => {
 
             {movies && movies.length > 0 ? (
                 <>
-                    <h1 className="text-2xl font-bold">Popular Movies</h1>
+                    <h1 className="text-2xl font-bold mb-4 inline-flex">{title}</h1>
+                    {/* Toggle from inside MovieCard */}
+                    {title === "Trending Movies" && <span className="inline-flex gap-3 ml-3">
+                        <button
+                            onClick={() => setWeek("day")}
+                            className={`px-3 py-2 rounded-lg font-medium transition ${week === "day"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                                }`}
+                        >
+                            Today
+                        </button>
+                        <button
+                            onClick={() => setWeek("week")}
+                            className={`px-3 py-2 rounded-lg font-medium transition ${week === "week"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                                }`}
+                        >
+                            This Week
+                        </button>
+                    </span>}
+
 
                     <div
                         className="overflow-x-auto scrollbar-hidden cursor-grab active:cursor-grabbing select-none"
