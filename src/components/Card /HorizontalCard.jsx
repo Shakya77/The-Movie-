@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
+const HorizontalCard = ({ title, movies, loading, error, week, setWeek, count }) => {
     const [showLoader, setShowLoader] = useState(true);
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
     };
 
     return (
-        <div className="w-3/4 mx-auto">
+        <div className="w-3/4 mx-auto mt-4">
             {showLoader && (
                 <div className="flex justify-center items-center h-screen">
                     <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
@@ -57,26 +57,28 @@ const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
                 <>
                     <h1 className="text-2xl font-bold mb-4 inline-flex">{title}</h1>
                     {/* Toggle from inside MovieCard */}
-                    {title === "Trending Movies" && <span className="inline-flex gap-3 ml-3">
-                        <button
-                            onClick={() => setWeek("day")}
-                            className={`px-3 py-2 rounded-lg font-medium transition ${week === "day"
-                                ? "bg-blue-600 text-white"
-                                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                                }`}
-                        >
-                            Today
-                        </button>
-                        <button
-                            onClick={() => setWeek("week")}
-                            className={`px-3 py-2 rounded-lg font-medium transition ${week === "week"
-                                ? "bg-blue-600 text-white"
-                                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                                }`}
-                        >
-                            This Week
-                        </button>
-                    </span>}
+                    {title === "Trending Movies" &&
+                        <span className="inline-flex gap-3 ml-3">
+                            <button
+                                onClick={() => setWeek("day")}
+                                className={`px-3 py-2 rounded-lg font-medium transition ${week === "day"
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                                    }`}
+                            >
+                                Today
+                            </button>
+                            <button
+                                onClick={() => setWeek("week")}
+                                className={`px-3 py-2 rounded-lg font-medium transition ${week === "week"
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                                    }`}
+                            >
+                                This Week
+                            </button>
+                        </span>
+                    }
 
 
                     <div
