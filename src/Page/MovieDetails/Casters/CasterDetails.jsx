@@ -43,13 +43,13 @@ export default function CasterDetails() {
 
             {/* Profile Image & Info */}
             <div className="flex flex-col md:flex-row gap-8">
-                <div className="w-full md:w-1/3">
+                <div className="w-full md:w-1/4">
                     <img
                         src={profile_path ? `${imageBaseUrl}${profile_path}` : 'https://via.placeholder.com/500x750?text=No+Image'}
                         alt={name}
                         className="w-full rounded-lg shadow-md"
                     />
-                    <h1 className="text-3xl font-bold mb-6">{name}</h1>
+                    <h1 className="text-2xl font-bold mb-6 text-center mt-3">{name}</h1>
                 </div>
 
                 <div className="w-full md:w-2/3">
