@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useGetApi from "../../../Hooks/useGetApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Casters({ movie_id }) {
     const url = `https://api.themoviedb.org/3/movie/${movie_id}/credits`;
@@ -11,6 +12,7 @@ export default function Casters({ movie_id }) {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (loading) {
@@ -37,6 +39,10 @@ export default function Casters({ movie_id }) {
         const x = e.pageX - scrollRef.current.offsetLeft;
         const walk = (x - startX) * 2;
         scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const casterNavigate = (casterId) => {
+        navigate(`/caster/details/${casterId}`);
     };
 
     return (
@@ -66,7 +72,7 @@ export default function Casters({ movie_id }) {
                         >
                             <div className="flex flex-nowrap gap-4 py-4">
                                 {data.cast.map((cast) => (
-                                    <div key={cast.cast_id} className="flex-shrink-0 w-[160px] ">
+                                    <div key={cast.cast_id} onClick={() => casterNavigate(cast.id)} className="flex-shrink-0 w-[160px]">
                                         <img
                                             src={
                                                 cast.profile_path

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MovieDetails from '../Page/MovieDetails/MovieDetails';
 import { lazy, Suspense } from 'react';
+import CasterDetails from '../Page/MovieDetails/Casters/CasterDetails';
 
 export default function Routing() {
 
@@ -16,6 +17,7 @@ export default function Routing() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/movie/details/:movieId" element={<MovieDetails />} />
+                    <Route path="/caster/details/:casterId" element={<CasterDetails />} />
                     {/* Add more routes as needed */}
                 </Routes>
             </Suspense>
