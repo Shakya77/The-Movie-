@@ -39,7 +39,6 @@ export default function CasterDetails() {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">
-            {/* Header */}
 
             {/* Profile Image & Info */}
             <div className="flex flex-col md:flex-row gap-8">

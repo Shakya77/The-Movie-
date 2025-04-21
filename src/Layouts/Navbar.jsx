@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const location = useLocation();
 
     const handleNavigate = () => {
         navigate("/home");
@@ -12,6 +13,25 @@ export default function Navbar() {
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
     };
+
+    const whatLocationActive = () => {
+        if (location.pathname === "/home") {
+            return "bg-blue-700 text-white";
+        } else if (location.pathname === "/movies") {
+            return "bg-blue-700 text-white";
+        } else if (location.pathname === "/casters") {
+            return "bg-blue-700 text-white";
+        } else if (location.pathname === "/trending") {
+            return "bg-blue-700 text-white";
+        } else if (location.pathname === "/upcoming") {
+            return "bg-blue-700 text-white";
+        } else if (location.pathname === "/popular") {
+            return "bg-blue-700 text-white";
+        }
+    };
+    useState({
+        whatLocationActive
+    }, [handleNavigate])
 
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">

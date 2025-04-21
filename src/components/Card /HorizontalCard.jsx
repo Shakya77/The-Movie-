@@ -1,14 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
     const [showLoader, setShowLoader] = useState(true);
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
     const navigate = useNavigate();
-    const scrollRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
 
     const handleMovieClick = (movieId) => {
         navigate(`/movie/details/${movieId}`);
@@ -25,25 +22,15 @@ const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
         }
     }, [loading]);
 
-    const startDrag = (e) => {
-        setIsDragging(true);
-        setStartX(e.pageX - scrollRef.current.offsetLeft);
-        setScrollLeft(scrollRef.current.scrollLeft);
-    };
-
-    const stopDrag = () => setIsDragging(false);
-
-    const onDrag = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - scrollRef.current.offsetLeft;
-        const walk = (x - startX) * 2;
-        scrollRef.current.scrollLeft = scrollLeft - walk;
-    };
+    const [emblaRef] = useEmblaCarousel({
+        loop: false,
+        dragFree: true, // Smooth, free scrolling
+        containScroll: 'keepSnaps',
+    });
 
     return (
         <div className="flex justify-center mt-4">
-            <div className="max-w-screen-lg w-full">
+            <div className="max-w-screen-lg w-full relative">
 
                 {showLoader && (
                     <div className="flex justify-center items-center h-screen">
@@ -82,15 +69,9 @@ const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
                             </span>
                         }
 
-                        <div
-                            className="overflow-x-auto scrollbar-hidden cursor-grab active:cursor-grabbing select-none"
-                            ref={scrollRef}
-                            onMouseDown={startDrag}
-                            onMouseLeave={stopDrag}
-                            onMouseUp={stopDrag}
-                            onMouseMove={onDrag}
-                        >
-                            <div className="flex flex-nowrap gap-4 py-4">
+                        {/* Embla Carousel */}
+                        <div className="embla" ref={emblaRef}>
+                            <div className="embla__container flex gap-4">
                                 {movies.map((movie) => (
                                     <div key={movie.id} className="flex-shrink-0 w-[180px]">
                                         <div className="relative rounded-md overflow-hidden shadow-md hover:shadow-xl transition duration-300 group">
@@ -137,8 +118,7 @@ const HorizontalCard = ({ title, movies, loading, error, week, setWeek }) => {
                             No movies found.
                         </div>
                     )
-                )
-                }
+                )}
             </div>
         </div >
     );

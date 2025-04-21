@@ -7,9 +7,9 @@ export default function Casters({ movie_id }) {
     const url = `https://api.themoviedb.org/3/movie/${movie_id}/credits`;
     const { data, loading, error } = useGetApi(url);
     const [emblaRef] = useEmblaCarousel({
-        loop: false,
-        dragFree: true,        // 💡 Smooth, free scrolling
-        containScroll: 'trimSnaps',
+        loop: false, // Allows infinite scrolling
+        dragFree: true, // Smooth, free scrolling
+        containScroll: 'keepSnaps', // Ensures images are always snapped correctly
     });
 
     const [showLoader, setShowLoader] = useState(true);
@@ -49,13 +49,13 @@ export default function Casters({ movie_id }) {
                         <h2 className="text-xl font-bold mb-2">Top Cast</h2>
 
                         {/* Embla Carousel container */}
-                        <div className="embla" ref={emblaRef}>
-                            <div className="embla__container">
+                        <div className="embla relative" ref={emblaRef}>
+                            <div className="embla__container flex gap-4">
                                 {data.cast.map((cast) => (
                                     <div
                                         key={cast.cast_id}
                                         onClick={() => casterNavigate(cast.id)}
-                                        className="embla__slide"
+                                        className="flex-shrink-0 w-[160px] cursor-pointer"
                                     >
                                         <img
                                             src={
@@ -64,7 +64,7 @@ export default function Casters({ movie_id }) {
                                                     : 'https://via.placeholder.com/500x750?text=No+Image'
                                             }
                                             alt={cast.name}
-                                            className="rounded-lg h-48 w-full object-cover shadow-md"
+                                            className="w-full h-auto object-cover"
                                         />
                                         <h3 className="text-sm font-semibold mt-2 truncate">{cast.name}</h3>
                                         <p className="text-xs text-gray-500 truncate">as {cast.character}</p>

@@ -30,7 +30,19 @@
 
 .embla__slide {
     flex: 0 0 auto;
-    width: 160px;
     cursor: pointer;
     transition: transform 0.3s;
+}
+
+/* embla.css */
+.embla {
+    @apply overflow-hidden;
+}
+
+.embla__container {
+    @apply flex gap-4 py-4 will-change-transform;
+}
+
+.embla__slide {
+    @apply flex-shrink-0 w-[160px] cursor-pointer transition-transform duration-300;
 }
