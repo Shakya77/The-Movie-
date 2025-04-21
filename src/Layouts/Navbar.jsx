@@ -1,49 +1,51 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const location = useLocation();
 
-    const handleNavigate = () => {
-        navigate("/home");
+    const handleNavigate = (whereTo) => {
+        navigate(`/${whereTo}`);
     };
 
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
     };
 
-    const whatLocationActive = () => {
-        if (location.pathname === "/home") {
-            return "bg-blue-700 text-white";
-        } else if (location.pathname === "/movies") {
-            return "bg-blue-700 text-white";
-        } else if (location.pathname === "/casters") {
-            return "bg-blue-700 text-white";
-        } else if (location.pathname === "/trending") {
-            return "bg-blue-700 text-white";
-        } else if (location.pathname === "/upcoming") {
-            return "bg-blue-700 text-white";
-        } else if (location.pathname === "/popular") {
-            return "bg-blue-700 text-white";
-        }
-    };
-    useState({
-        whatLocationActive
-    }, [handleNavigate])
-
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <button onClick={handleNavigate} className="flex items-center space-x-3 rtl:space-x-reverse">
+                <NavLink to="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Movie House</span>
-                </button>
+                </NavLink>
 
                 <div className="w-full md:block md:w-auto">
                     <ul className="flex flex-col md:flex-row md:space-x-8 font-medium p-4 md:p-0 mt-4 md:mt-0 border border-gray-100 md:border-0 rounded-lg bg-gray-50 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-blue-600 md:dark:bg-transparent">Home</a>
+                            <NavLink to="/home" className={({ isActive }) =>
+                                isActive
+                                    ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-blue-600 md:dark:bg-transparent'
+                                    : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500'
+                            }>Home</NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink to="/genre" c className={({ isActive }) =>
+                                isActive
+                                    ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-blue-600 md:dark:bg-transparent'
+                                    : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500'
+                            }>Genre</NavLink>
+                        </li>
+
+                        <li>
+                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Services</a>
+                        </li>
+                        <li>
+                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Pricing</a>
+                        </li>
+                        <li>
+                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Contact</a>
                         </li>
 
                         {/* Custom Dropdown */}
@@ -77,19 +79,9 @@ export default function Navbar() {
                                 </div>
                             )}
                         </li>
-
-                        <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Services</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Pricing</a>
-                        </li>
-                        <li>
-                            <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500">Contact</a>
-                        </li>
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }

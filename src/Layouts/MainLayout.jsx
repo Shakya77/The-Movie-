@@ -3,7 +3,7 @@ import Footer from './Footer';
 
 export default function MainLayout({ children }) {
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <Navbar />
             {children}
             <Footer />
