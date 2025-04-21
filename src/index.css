@@ -13,3 +13,24 @@
     scrollbar-width: none;
     /* Firefox */
 }
+
+
+/* styles.css or your global styles */
+.embla {
+    overflow: hidden;
+}
+
+.embla__container {
+    display: flex;
+    gap: 1rem;
+    /* Tailwind: gap-4 */
+    padding: 1rem 0;
+    will-change: transform;
+}
+
+.embla__slide {
+    flex: 0 0 auto;
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
