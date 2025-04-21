@@ -20,6 +20,7 @@ export default function Genre() {
     const handleGenreClick = () => {
         navigate('/genre/results', { state: { selectedGenres } });
     };
+
     return (
         <MainLayout>
             <div className="flex justify-center mt-4">
