@@ -8,7 +8,7 @@ export default function Card() {
     const [search, setSearch] = useState("");
 
     const handleNavigate = () => {
-        navigate("/home");
+        navigate("/movies");
     };
 
     const handleSearch = () => {

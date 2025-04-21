@@ -13,18 +13,26 @@ export default function Navbar() {
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <NavLink to="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <NavLink to="/movies" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Movie House</span>
                 </NavLink>
 
                 <div className="w-full md:block md:w-auto">
                     <ul className="flex flex-col md:flex-row md:space-x-8 font-medium p-4 md:p-0 mt-4 md:mt-0 border border-gray-100 md:border-0 rounded-lg bg-gray-50 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
-                            <NavLink to="/home" className={({ isActive }) =>
+                            <NavLink to="/movies" className={({ isActive }) =>
                                 isActive
                                     ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-blue-600 md:dark:bg-transparent'
                                     : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500'
-                            }>Home</NavLink>
+                            }>Movies</NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink to="/tvShows" className={({ isActive }) =>
+                                isActive
+                                    ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-blue-600 md:dark:bg-transparent'
+                                    : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500'
+                            }>Tv Shows</NavLink>
                         </li>
 
                         <li>

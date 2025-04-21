@@ -5,6 +5,7 @@ import Similar from "../Search/Similar/Similar";
 import Casters from "./Casters/Casters";
 import MainLayout from "../../Layouts/MainLayout";
 import { useEffect } from "react";
+import WatchProviders from "./WatchProviders/WatchProviders";
 
 export default function MovieDetails() {
     const { movieId } = useParams();
@@ -34,6 +35,9 @@ export default function MovieDetails() {
                                 <p className="max-w-xl text-base text-gray-700 leading-relaxed">
                                     {data.overview}
                                 </p>
+                                <div className="">
+                                    <WatchProviders movieId={movieId} />
+                                </div>
                             </div>
                         </div>
                         <Casters movie_id={movieId} />

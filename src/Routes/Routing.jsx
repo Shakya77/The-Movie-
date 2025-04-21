@@ -8,6 +8,7 @@ import PrivateRoute from '../auth/PrivateRoute';
 import Favorite from '../Page/Favorite/Favorite';
 import Watchlist from '../Page/Watchlist/Watchlist';
 import Login from '../auth/Login';
+import TvShows from '../Page/tvshows/TvShows';
 
 export default function Routing() {
 
@@ -20,7 +21,7 @@ export default function Routing() {
             <Routes>
                 <Route path="/" element={<OnBoarding />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/movies" element={<Home />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/movie/details/:movieId" element={<MovieDetails />} />
                 <Route path="/caster/details/:casterId" element={<CasterDetails />} />
@@ -38,6 +39,8 @@ export default function Routing() {
                         <Favorite />
                     </PrivateRoute>}
                 />
+
+                <Route path="/tvShows" element={<TvShows />} />
             </Routes>
         </Suspense>
     );

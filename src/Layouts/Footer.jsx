@@ -5,7 +5,7 @@ export default function Footer() {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/home");
+        navigate("/movies");
     };
 
     return (
