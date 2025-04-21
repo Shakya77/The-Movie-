@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HorizontalCard from "../../../components/Card /HorizontalCard";
+import HorizontalCard from "../../../components/Card/HorizontalCard";
 import useGetApi from "../../../Hooks/useGetApi";
 
 export default function Trending() {

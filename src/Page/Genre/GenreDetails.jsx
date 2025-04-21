@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGetApi from '../../Hooks/useGetApi';
-import VerticalCard from '../../components/Card /VerticalCard';
+import VerticalCard from '../../components/Card/VerticalCard';
 import MainLayout from '../../Layouts/MainLayout';
 
 export default function GenreDetails() {

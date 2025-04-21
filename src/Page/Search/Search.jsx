@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import useGetApi from '../../Hooks/useGetApi';
 import { useEffect } from 'react';
-import MovieCard from '../../components/Card /HorizontalCard';
+import VerticalCard from '../../components/Card/VerticalCard';
+import MainLayout from '../../Layouts/MainLayout';
 
 export default function Search() {
     const location = useLocation();
@@ -22,9 +23,11 @@ export default function Search() {
 
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold text-center mb-6">Search Results for: {keyword}</h1>
-            <MovieCard movies={data?.results || []} loading={loading} error={error} />
-        </div>
+        <MainLayout>
+            <div className="container mx-auto p-4">
+                <h1 className="text-3xl font-bold text-center mb-6">Search Results for: {keyword}</h1>
+                <VerticalCard movies={data?.results || []} loading={loading} error={error} />
+            </div>
+        </MainLayout>
     );
 }
