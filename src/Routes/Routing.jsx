@@ -4,6 +4,10 @@ import { lazy, Suspense } from 'react';
 import CasterDetails from '../Page/MovieDetails/Casters/CasterDetails';
 import GenreDetails from '../Page/Genre/GenreDetails';
 import Random from '../Page/Random/Random';
+import PrivateRoute from '../auth/PrivateRoute';
+import Favorite from '../Page/Favorite/Favorite';
+import Watchlist from '../Page/Watchlist/Watchlist';
+import Login from '../auth/Login';
 
 export default function Routing() {
 
@@ -12,20 +16,29 @@ export default function Routing() {
     const Search = lazy(() => import('../Page/Search/Search'));
     const Genre = lazy(() => import('../Page/Genre/Genre'));
     return (
-        <Router>
-            <Suspense fallback={<div>Loading...</div>}>
-                <Routes>
-                    <Route path="/" element={<OnBoarding />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="/movie/details/:movieId" element={<MovieDetails />} />
-                    <Route path="/caster/details/:casterId" element={<CasterDetails />} />
-                    <Route path="/genre" element={<Genre />} />
-                    <Route path="/genre/results" element={<GenreDetails />} />
-                    <Route path="/random" element={<Random />} />
-                    {/* Add more routes as needed */}
-                </Routes>
-            </Suspense>
-        </Router>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+                <Route path="/" element={<OnBoarding />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/movie/details/:movieId" element={<MovieDetails />} />
+                <Route path="/caster/details/:casterId" element={<CasterDetails />} />
+                <Route path="/genre" element={<Genre />} />
+                <Route path="/genre/results" element={<GenreDetails />} />
+                <Route path="/random" element={<Random />} />
+
+                <Route path="/watchlist" element={
+                    <PrivateRoute>
+                        <Watchlist />
+                    </PrivateRoute>}
+                />
+                <Route path="/favorite" element={
+                    <PrivateRoute>
+                        <Favorite />
+                    </PrivateRoute>}
+                />
+            </Routes>
+        </Suspense>
     );
 }
