@@ -4,11 +4,17 @@ import Video from "./Video";
 import Similar from "../Search/Similar/Similar";
 import Casters from "./Casters/Casters";
 import MainLayout from "../../Layouts/MainLayout";
+import { useEffect } from "react";
 
 export default function MovieDetails() {
     const { movieId } = useParams();
     const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
     const { data, loading, error } = useGetApi(url);
+    const title = data.original_title;
+
+    useEffect(() => {
+        document.title = `${title} | The Movie House`;
+    }, [title]);
 
     return (
         <MainLayout>

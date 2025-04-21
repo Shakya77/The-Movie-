@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useGetApi from "../../../Hooks/useGetApi";
+import { useEffect } from "react";
 
 export default function CasterDetails() {
     const { casterId } = useParams();
@@ -10,6 +11,11 @@ export default function CasterDetails() {
     const { data: creditsData, loading: creditsLoading, error: creditsError } = useGetApi(creditsUrl);
 
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
+    const { name, profile_path, birthday, place_of_birth, biography } = personData;
+
+    useEffect(() => {
+        document.title = `${name} | The Movie House`;
+    }, [name]);
 
     if (personLoading || creditsLoading) {
         return (
@@ -35,7 +41,6 @@ export default function CasterDetails() {
         );
     }
 
-    const { name, profile_path, birthday, place_of_birth, biography } = personData;
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">

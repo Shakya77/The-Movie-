@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainLayout from '../../Layouts/MainLayout';
 import useGetApi from '../../Hooks/useGetApi';
 import { useNavigate } from 'react-router-dom';
 
 export default function Genre() {
+
+    useEffect(() => {
+        document.title = "Genre | The Movie House";
+    }, []);
+
     const url = 'https://api.themoviedb.org/3/genre/movie/list';
     const { data, loading, error } = useGetApi(url);
     const navigate = useNavigate();
