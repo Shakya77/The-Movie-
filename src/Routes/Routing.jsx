@@ -3,6 +3,7 @@ import MovieDetails from '../Page/MovieDetails/MovieDetails';
 import { lazy, Suspense } from 'react';
 import CasterDetails from '../Page/MovieDetails/Casters/CasterDetails';
 import Genre from '../Page/Genre/Genre';
+import GenreDetails from '../Page/Genre/GenreDetails';
 
 export default function Routing() {
 
@@ -20,6 +21,7 @@ export default function Routing() {
                     <Route path="/movie/details/:movieId" element={<MovieDetails />} />
                     <Route path="/caster/details/:casterId" element={<CasterDetails />} />
                     <Route path="/genre" element={<Genre />} />
+                    <Route path="/genre/:genreId" element={<GenreDetails />} />
                     {/* Add more routes as needed */}
                 </Routes>
             </Suspense>

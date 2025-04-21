@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
-    const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const handleNavigate = (whereTo) => {
-        navigate(`/${whereTo}`);
-    };
 
     const toggleDropdown = () => {
         setIsDropdownOpen((prev) => !prev);
@@ -31,7 +26,7 @@ export default function Navbar() {
                         </li>
 
                         <li>
-                            <NavLink to="/genre" c className={({ isActive }) =>
+                            <NavLink to="/genre" className={({ isActive }) =>
                                 isActive
                                     ? 'block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:bg-blue-600 md:dark:bg-transparent'
                                     : 'block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500'
