@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function useGetApi(url) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null); // Store the error message or object
+    const [error, setError] = useState(null);
 
     const fetchData = async () => {
         try {
@@ -26,7 +26,6 @@ export default function useGetApi(url) {
             setData(data);
         } catch (error) {
             setError(error.message || 'Something went wrong');
-
         } finally {
             setLoading(false);
         }
@@ -34,7 +33,7 @@ export default function useGetApi(url) {
 
     useEffect(() => {
         fetchData();
-    }, [url]);
+    }, []); // Only run once when the component mounts
 
     return { data, loading, error, fetchData };
 }

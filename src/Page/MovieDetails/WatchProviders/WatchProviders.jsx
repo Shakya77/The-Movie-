@@ -9,7 +9,7 @@ export default function WatchProviders({ movieId }) {
 
     const usProviders = data?.results?.US;
     console.log(usProviders);
-    const { buy = [], rent = [] } = usProviders;
+    const { buy = [], rent = [] } = usProviders || {};
     return (
         <div className="mt-4">
             {buy.length === 0 && rent.length === 0 ? (
