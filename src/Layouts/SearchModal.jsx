@@ -1,11 +1,23 @@
 // components/SearchModal.jsx
-import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SearchModal = ({ open, setOpen }) => {
+    const [keyword, setKeyword] = useState();
+    const navigate = useNavigate();
     if (!open) return null;
-
     const handleClose = () => setOpen(false);
 
+    console.log(keyword);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleSearch();
+        setOpen(false);
+    }
+    const handleSearch = () => {
+        navigate("/search?keyword=" + keyword);
+    };
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
@@ -24,12 +36,16 @@ const SearchModal = ({ open, setOpen }) => {
                         ✕
                     </button>
                 </div>
-                <input
-                    type="text"
-                    placeholder="Type to search..."
-                    className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    autoFocus
-                />
+                <form action="" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Type to search..."
+                        className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        onChange={(e) => { setKeyword(e.target.value) }}
+                        autoFocus
+                    />
+                    <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Search</button>
+                </form>
             </div>
         </div>
     );
