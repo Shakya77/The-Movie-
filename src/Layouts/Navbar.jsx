@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
-export default function Navbar() {
+export default function Navbar({ setOpen }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isDropdownOpenWatchTime, setIsDropdownOpenWatchTime] = useState(false);
     const { logout } = useAuth();
@@ -23,7 +23,9 @@ export default function Navbar() {
                 <NavLink to="/movies" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Movie House</span>
                 </NavLink>
-
+                <div onClick={() => { setOpen(true) }} className="text-white text-sm border cursor-pointer border-gray-200 dark:border-gray-700 rounded-lg px-2 py-1 bg-gray-100 dark:bg-gray-800">
+                    CTRL + K to Search
+                </div>
                 <div className="w-full md:block md:w-auto">
                     <ul className="flex flex-col md:flex-row md:space-x-8 font-medium p-4 md:p-0 mt-4 md:mt-0 border border-gray-100 md:border-0 rounded-lg bg-gray-50 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <li>
