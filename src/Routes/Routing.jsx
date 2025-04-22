@@ -9,6 +9,8 @@ import Favorite from '../Page/Favorite/Favorite';
 import Watchlist from '../Page/Watchlist/Watchlist';
 import Login from '../auth/Login';
 import TvShows from '../Page/tvshows/TvShows';
+import MovieWatchTime from '../Page/WatchTime/MovieWatchTime';
+import TvShowsWatchTime from '../Page/WatchTime/TvShowsWatchTime';
 
 export default function Routing() {
 
@@ -41,6 +43,10 @@ export default function Routing() {
                 />
 
                 <Route path="/tvShows" element={<TvShows />} />
+
+                {/* Watch Time */}
+                <Route path='/watchtime/movies' element={<MovieWatchTime />} />
+                <Route path='/watchtime/tvShows' element={<TvShowsWatchTime />} />
             </Routes>
         </Suspense>
     );
