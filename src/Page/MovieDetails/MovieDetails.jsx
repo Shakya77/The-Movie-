@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import useGetApi from "../../Hooks/useGetApi";
 import Video from "./Video";
-import Similar from "../Search/Similar/Similar";
 import Casters from "./Casters/Casters";
 import MainLayout from "../../Layouts/MainLayout";
 import { useEffect } from "react";
 import WatchProviders from "./WatchProviders/WatchProviders";
+import Similar from "./Similar/Similar";
 
 export default function MovieDetails() {
     const { movieId } = useParams();

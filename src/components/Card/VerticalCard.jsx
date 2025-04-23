@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function VerticalCard({ title, movies, loading, error }) {
+export default function VerticalCard({ title, movies, error, url }) {
+    const { data, loading, error } = useGetApi(url);
     const [showLoader, setShowLoader] = useState(true);
     const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
     const navigate = useNavigate();
