@@ -108,7 +108,13 @@ export default function Navbar({ setOpen }) {
                                             <NavLink to="/favorite" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Favorite</NavLink>
                                         </li>
                                         <li>
-                                            <li onClick={logout} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</li>
+                                            <NavLink to="/addMovie" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Add Movie</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/showMovie" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show Movie</NavLink>
+                                        </li>
+                                        <li>
+                                            <button onClick={logout} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</button>
                                         </li>
                                     </ul>
                                 </div>

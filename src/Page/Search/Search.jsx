@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import VerticalCard from '../../components/Card/VerticalCard';
 import MainLayout from '../../Layouts/MainLayout';
 
 export default function Search() {
@@ -14,7 +13,6 @@ export default function Search() {
         <MainLayout>
             <div className="container mx-auto p-4">
                 <h1 className="text-3xl font-bold text-center mb-6">Search Results for: {lastKeyword} </h1>
-                <VerticalCard url={url} />
             </div>
         </MainLayout>
     );

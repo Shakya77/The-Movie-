@@ -11,6 +11,8 @@ import Login from '../auth/Login';
 import TvShows from '../Page/tvshows/TvShows';
 import MovieWatchTime from '../Page/WatchTime/MovieWatchTime';
 import TvShowsWatchTime from '../Page/WatchTime/TvShowsWatchTime';
+import AddMovie from '../Page/Admin/AddMovie';
+import ShowMovie from '../Page/Admin/ShowMovie.jsx/ShowMovie';
 
 export default function Routing() {
 
@@ -41,7 +43,16 @@ export default function Routing() {
                         <Favorite />
                     </PrivateRoute>}
                 />
-
+                <Route path="/addMovie" element={
+                    <PrivateRoute>
+                        <AddMovie />
+                    </PrivateRoute>}
+                />
+                <Route path="/showMovie" element={
+                    <PrivateRoute>
+                        <ShowMovie />
+                    </PrivateRoute>}
+                />
                 <Route path="/tvShows" element={<TvShows />} />
 
                 {/* Watch Time */}

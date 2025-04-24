@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGetApi from '../../Hooks/useGetApi';
-import VerticalCard from '../../components/Card/VerticalCard';
 import MainLayout from '../../Layouts/MainLayout';
 
 export default function GenreDetails() {
@@ -26,7 +25,6 @@ export default function GenreDetails() {
     return (
         <MainLayout>
             <div className="p-6 max-w-screen-lg mx-auto">
-                <VerticalCard title="Movies by Genre" movies={filteredMovies} loading={loading} error={error} />
             </div>
         </MainLayout>
     )
