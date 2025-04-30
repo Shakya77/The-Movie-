@@ -64,16 +64,18 @@ const HorizontalCard = ({ title, url, week, setWeek }) => {
                         </div>
                         <div className="embla" ref={emblaRef}>
                             <div className="embla__container flex gap-4">
-                                {data.results.map((movie) => (
-                                    <CardDesign
-                                        key={movie.id}
-                                        id={movie.id}
-                                        title={movie.title}
-                                        vote_average={movie.vote_average}
-                                        release_date={movie.release_date}
-                                        poster_path={movie.poster_path}
-                                    />
-                                ))}
+                                {data.results
+                                    ?.filter((movie) => movie.poster_path)
+                                    .map((movie) => (
+                                        <CardDesign
+                                            key={movie.id}
+                                            id={movie.id}
+                                            title={movie.title}
+                                            vote_average={movie.vote_average}
+                                            release_date={movie.release_date}
+                                            poster_path={movie.poster_path}
+                                        />
+                                    ))}
                             </div>
                         </div>
                     </>

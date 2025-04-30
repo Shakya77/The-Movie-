@@ -7,22 +7,13 @@ export default function Card() {
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
     const [type, setType] = useState("movie");
-    const [searchSet, setSearchSet] = useState([]);
 
     const handleNavigate = () => {
         navigate("/movies");
     };
-
     const handleSearch = (e) => {
-        e.preventDefault();  // Prevent default form submission
-        // Create a new variable updatedSearchSet instead of directly using searchSet
-        const updatedSearchSet = [...searchSet, search, type];
-
-        // Update the state with the new array and pass it in the state
-        setSearchSet(updatedSearchSet);
-
-        // Navigate to /search and pass the updatedSearchSet in the state
-        navigate("/search", { state: { searchSet: updatedSearchSet } });
+        e.preventDefault();
+        navigate("/search", { state: { search, type } });
     };
 
     console.log(search, type);
