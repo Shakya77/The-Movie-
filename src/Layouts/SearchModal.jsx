@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const SearchModal = ({ open, setOpen }) => {
     const [keyword, setKeyword] = useState();
     const navigate = useNavigate();
+    const [type, setType] = useState("movie");
     if (!open) return null;
     const handleClose = () => setOpen(false);
 
@@ -16,7 +17,7 @@ const SearchModal = ({ open, setOpen }) => {
         setOpen(false);
     }
     const handleSearch = () => {
-        navigate("/search?keyword=" + keyword);
+        navigate("/search", { state: { search: keyword, type } });
     };
     return (
         <div
@@ -36,7 +37,7 @@ const SearchModal = ({ open, setOpen }) => {
                         ✕
                     </button>
                 </div>
-                <form action="" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Type to search..."
@@ -44,6 +45,11 @@ const SearchModal = ({ open, setOpen }) => {
                         onChange={(e) => { setKeyword(e.target.value) }}
                         autoFocus
                     />
+                    <select value={type} onChange={(e) => setType(e.target.value)}>
+                        <option value="">Type</option>
+                        <option value="movie">Movie</option>
+                        <option value="tv">TV Show</option>
+                    </select>
                     <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Search</button>
                 </form>
             </div>
