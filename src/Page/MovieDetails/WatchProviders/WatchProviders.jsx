@@ -4,7 +4,11 @@ export default function WatchProviders({ movieId }) {
     const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers`
     const { data, loading, error } = useGetApi(url);
 
-    if (loading) return <p className="text-gray-500">Loading providers...</p>;
+    if (loading) return
+    <div className="flex justify-center items-center h-screen">
+        <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+    </div>
+        ;
     if (error) return <p className="text-red-500">Error loading providers.</p>;
 
     const usProviders = data?.results?.US;

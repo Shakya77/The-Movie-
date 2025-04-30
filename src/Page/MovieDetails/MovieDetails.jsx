@@ -20,7 +20,11 @@ export default function MovieDetails() {
     return (
         <MainLayout>
             <div className="flex flex-col items-center text-center p-5 font-sans">
-                {loading && <div className="text-red-500 text-lg font-bold">Loading...</div>}
+                {loading && (
+                    <div className="flex justify-center items-center h-screen">
+                        <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+                    </div>
+                )}
                 {error && <div className="text-red-500 text-lg font-bold">Error: {error}</div>}
                 {!loading && !error && data && (
                     <>

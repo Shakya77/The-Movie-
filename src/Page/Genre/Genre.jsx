@@ -32,7 +32,11 @@ export default function Genre() {
                 <div className="max-w-screen-lg w-full">
                     <div className="p-4">
                         <h1 className="text-xl font-bold mb-4">Select Movie Genres</h1>
-                        {loading && <p>Loading genres...</p>}
+                        {loading && (
+                            <div className="flex justify-center items-center h-screen">
+                                <div className="w-16 h-16 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+                            </div>
+                        )}
                         {error && <p className="text-red-500">Error: {error.message}</p>}
                         {data?.genres && (
                             <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
