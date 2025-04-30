@@ -28,7 +28,7 @@ export default function Genre() {
 
     return (
         <MainLayout>
-            <div className="flex justify-center mt-4">
+            <div className="flex flex-grow justify-center mt-4">
                 <div className="max-w-screen-lg w-full">
                     <div className="p-4">
                         <h1 className="text-xl font-bold mb-4">Select Movie Genres</h1>

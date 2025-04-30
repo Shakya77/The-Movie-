@@ -20,6 +20,7 @@ export default function Routing() {
     const Home = lazy(() => import('../Page/Home/Home'));
     const Search = lazy(() => import('../Page/Search/Search'));
     const Genre = lazy(() => import('../Page/Genre/Genre'));
+    
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Routes>
@@ -38,24 +39,29 @@ export default function Routing() {
                         <Watchlist />
                     </PrivateRoute>}
                 />
-                <Route path="/favorite" element={
-                    <PrivateRoute>
-                        <Favorite />
-                    </PrivateRoute>}
+                <Route path="/favorite" element=
+                    {
+                        <PrivateRoute>
+                            <Favorite />
+                        </PrivateRoute>
+                    }
                 />
-                <Route path="/addMovie" element={
-                    <PrivateRoute>
-                        <AddMovie />
-                    </PrivateRoute>}
+                <Route path="/addMovie" element=
+                    {
+                        <PrivateRoute>
+                            <AddMovie />
+                        </PrivateRoute>
+                    }
                 />
-                <Route path="/showMovie" element={
-                    <PrivateRoute>
-                        <ShowMovie />
-                    </PrivateRoute>}
+                <Route path="/showMovie" element=
+                    {
+                        <PrivateRoute>
+                            <ShowMovie />
+                        </PrivateRoute>
+                    }
                 />
                 <Route path="/tvShows" element={<TvShows />} />
 
-                {/* Watch Time */}
                 <Route path='/watchtime/movies' element={<MovieWatchTime />} />
                 <Route path='/watchtime/tvShows' element={<TvShowsWatchTime />} />
             </Routes>

@@ -33,7 +33,7 @@ export default function useGetApi(url) {
 
     useEffect(() => {
         fetchData();
-    }, []); // Only run once when the component mounts
+    }, [url]); // Only run once when the component mounts
 
     return { data, loading, error, fetchData };
 }

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import MainLayout from "../../Layouts/MainLayout";
-import LatestTrailers from "./LatestTrailers/LatestTrailers";
 import PopularMovies from "./Popular/Popular";
 import Trending from "./Trending/Trending";
 
@@ -11,9 +10,10 @@ export default function Home() {
 
     return (
         <MainLayout>
-            <PopularMovies />
-            <Trending />
-            <LatestTrailers />
+            <div className="flex-grow">
+                <PopularMovies />
+                <Trending />
+            </div>
         </MainLayout>
     );
 }

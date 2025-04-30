@@ -8,7 +8,6 @@ export default function WatchProviders({ movieId }) {
     if (error) return <p className="text-red-500">Error loading providers.</p>;
 
     const usProviders = data?.results?.US;
-    console.log(usProviders);
     const { buy = [], rent = [] } = usProviders || {};
     return (
         <div className="mt-4">
