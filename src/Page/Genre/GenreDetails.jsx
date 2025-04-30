@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import useGetApi from '../../Hooks/useGetApi';
 import MainLayout from '../../Layouts/MainLayout';
+import VerticalCard from '../../components/Card/VerticalCard';
 
 export default function GenreDetails() {
     const location = useLocation();
@@ -14,17 +14,17 @@ export default function GenreDetails() {
             navigate('/genre');
         }
     }, [selectedGenres, navigate]);
-    console.log(selectedGenres);
-    const url = 'https://api.themoviedb.org/3/discover/movie';
-    const { data, loading, error } = useGetApi(url);
 
-    const filteredMovies = data?.results?.filter((movie) =>
-        movie.genre_ids?.some((id) => selectedGenres.includes(id))
-    );
+    useEffect(() => {
+        document.title = "Search By Genre | The Movie House";
+    }, []);
+
+    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${selectedGenres}`;
 
     return (
         <MainLayout>
             <div className="p-6 max-w-screen-lg mx-auto">
+                <VerticalCard title="Movies by Genre" url={url} />
             </div>
         </MainLayout>
     )

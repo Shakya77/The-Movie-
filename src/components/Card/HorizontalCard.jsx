@@ -61,7 +61,7 @@ const HorizontalCard = ({ title, url, week, setWeek }) => {
                                     </span>
                                 )}
                             </div>
-                            {title != "Similar Movies" && <button
+                            {title == "Popular Movies" && <button
                                 type="button"
                                 className="inline-flex gap-3 ml-3 p-2 text-base rounded-lg text-blue-600 hover:underline"
                                 onClick={() => handleSeeMore(url, title)}>
