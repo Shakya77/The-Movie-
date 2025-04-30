@@ -1,9 +1,25 @@
+import { useState } from "react";
 import useGetApi from "../../Hooks/useGetApi";
 import CardDesign from "./partials/CardDesign";
 
 export default function VerticalCard({ title, url }) {
-    const { data, loading, error } = useGetApi(url);
+    const [page, setPage] = useState(1);
+    console.log(url);
+    const { data, loading, error } = useGetApi(`${url}&page=${page}`);
     console.log(data);
+
+    const handleNextPage = () => {
+        if (data?.total_pages > page) {
+            setPage(page + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    };
+
     return (
         <div className="flex justify-center mt-4">
             <div className="max-w-screen-lg w-full relative px-4">
@@ -32,6 +48,22 @@ export default function VerticalCard({ title, url }) {
                                         poster_path={movie.poster_path}
                                     />
                                 ))}
+                        </div>
+                        <div className="pagination flex justify-center mt-4">
+                            <button
+                                onClick={handlePreviousPage}
+                                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded disabled:opacity-50"
+                                disabled={page === 1}
+                            >
+                                Previous
+                            </button>
+                            <button
+                                onClick={handleNextPage}
+                                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded disabled:opacity-50"
+                                disabled={page === data.total_pages}
+                            >
+                                Next
+                            </button>
                         </div>
                     </>
                 ) : (

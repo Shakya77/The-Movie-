@@ -13,6 +13,7 @@ import MovieWatchTime from '../Page/WatchTime/MovieWatchTime';
 import TvShowsWatchTime from '../Page/WatchTime/TvShowsWatchTime';
 import AddMovie from '../Page/Admin/AddMovie';
 import ShowMovie from '../Page/Admin/ShowMovie.jsx/ShowMovie';
+import SeeMore from '../SeeMore/SeeMore';
 
 export default function Routing() {
 
@@ -20,7 +21,7 @@ export default function Routing() {
     const Home = lazy(() => import('../Page/Home/Home'));
     const Search = lazy(() => import('../Page/Search/Search'));
     const Genre = lazy(() => import('../Page/Genre/Genre'));
-    
+
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Routes>
@@ -64,6 +65,8 @@ export default function Routing() {
 
                 <Route path='/watchtime/movies' element={<MovieWatchTime />} />
                 <Route path='/watchtime/tvShows' element={<TvShowsWatchTime />} />
+
+                <Route path='/see-more/:title' element={<SeeMore />} />
             </Routes>
         </Suspense>
     );

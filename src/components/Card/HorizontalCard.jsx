@@ -1,9 +1,10 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import CardDesign from './partials/CardDesign';
 import useGetApi from '../../Hooks/useGetApi';
+import { useNavigate } from 'react-router-dom';
 
 const HorizontalCard = ({ title, url, week, setWeek }) => {
-
+    const navigate = useNavigate();
     const [emblaRef] = useEmblaCarousel({
         loop: false,
         dragFree: true,
@@ -11,6 +12,12 @@ const HorizontalCard = ({ title, url, week, setWeek }) => {
     });
 
     const { data, loading, error } = useGetApi(url);
+
+    const handleSeeMore = (url, title) => {
+        navigate(`/see-more/${title}`, {
+            state: { url }
+        });
+    };
 
     return (
         <div className="flex justify-center mt-4">
@@ -57,7 +64,7 @@ const HorizontalCard = ({ title, url, week, setWeek }) => {
                             {title != "Similar Movies" && <button
                                 type="button"
                                 className="inline-flex gap-3 ml-3 p-2 text-base rounded-lg text-blue-600 hover:underline"
-                                onClick={() => console.log("See More clicked")}>
+                                onClick={() => handleSeeMore(url, title)}>
                                 See More
                             </button>}
 
