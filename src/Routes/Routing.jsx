@@ -13,7 +13,7 @@ import MovieWatchTime from '../Page/WatchTime/MovieWatchTime';
 import TvShowsWatchTime from '../Page/WatchTime/TvShowsWatchTime';
 import AddMovie from '../Page/Admin/AddMovie';
 import ShowMovie from '../Page/Admin/ShowMovie.jsx/ShowMovie';
-import SeeMore from '../SeeMore/SeeMore';
+import SeeMore from '../Page/SeeMore/SeeMore';
 
 export default function Routing() {
 

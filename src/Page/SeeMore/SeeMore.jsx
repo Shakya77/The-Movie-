@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router-dom';
-import MainLayout from '../Layouts/MainLayout';
-import VerticalCard from '../components/Card/VerticalCard';
+import MainLayout from '../../Layouts/MainLayout';
+import VerticalCard from '../../components/Card/VerticalCard';
 
 export default function SeeMore() {
     const { title } = useParams();

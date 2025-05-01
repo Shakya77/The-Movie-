@@ -5,6 +5,11 @@ import CardDesign from "./partials/CardDesign";
 export default function VerticalCard({ title, url }) {
     const [page, setPage] = useState(1);
     const { data, loading, error } = useGetApi(`${url}&page=${page}`);
+    console.log(data);
+
+    const firstPage = () => {
+        setPage(1);
+    };
 
     const handleNextPage = () => {
         if (data?.total_pages > page) {
@@ -16,6 +21,10 @@ export default function VerticalCard({ title, url }) {
         if (page > 1) {
             setPage(page - 1);
         }
+    };
+
+    const lastpage = () => {
+        setPage(100);
     };
 
     return (
@@ -49,6 +58,13 @@ export default function VerticalCard({ title, url }) {
                         </div>
                         <div className="pagination flex justify-center mt-4">
                             <button
+                                onClick={firstPage}
+                                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded disabled:opacity-50"
+                                disabled={page === 1}
+                            >
+                                Go To First Page
+                            </button>
+                            <button
                                 onClick={handlePreviousPage}
                                 className="px-4 py-2 mx-2 bg-blue-500 text-white rounded disabled:opacity-50"
                                 disabled={page === 1}
@@ -61,6 +77,12 @@ export default function VerticalCard({ title, url }) {
                                 disabled={page === data.total_pages}
                             >
                                 Next
+                            </button>
+                            <button
+                                onClick={lastpage}
+                                className="px-4 py-2 mx-2 bg-blue-500 text-white rounded disabled:opacity-50"
+                            >
+                                Go to Last Page
                             </button>
                         </div>
                     </>

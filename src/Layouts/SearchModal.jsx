@@ -1,11 +1,35 @@
 // components/SearchModal.jsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SearchModal = ({ open, setOpen }) => {
     const [keyword, setKeyword] = useState();
     const navigate = useNavigate();
     const [type, setType] = useState("movie");
+    const [valid, setValid] = useState("");
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                setOpen(false);
+            }
+        };
+
+        if (open) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [open]);
+
+    useEffect(() => {
+        if (open) {
+            setKeyword("");
+            setValid("");
+        }
+    }, [open]);
 
     if (!open) return null;
 
@@ -13,6 +37,11 @@ const SearchModal = ({ open, setOpen }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!keyword || keyword.trim() === "") {
+            setValid("Write something to search");
+            return;
+        }
+        setValid("");
         handleSearch();
         setOpen(false);
     }
@@ -23,7 +52,7 @@ const SearchModal = ({ open, setOpen }) => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
             onClick={handleClose}>
             <div
                 className="bg-white rounded-xl shadow-lg w-full max-w-md p-6"
@@ -43,6 +72,7 @@ const SearchModal = ({ open, setOpen }) => {
                         className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         onChange={(e) => { setKeyword(e.target.value) }}
                         autoFocus />
+                    <p className="text-red-500 text-sm mt-1">{valid}</p>
                     <select value={type} onChange={(e) => setType(e.target.value)}>
                         <option value="movie">Movie</option>
                         <option value="tv">TV Show</option>
