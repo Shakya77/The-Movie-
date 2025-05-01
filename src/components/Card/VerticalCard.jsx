@@ -4,9 +4,7 @@ import CardDesign from "./partials/CardDesign";
 
 export default function VerticalCard({ title, url }) {
     const [page, setPage] = useState(1);
-    console.log(url);
     const { data, loading, error } = useGetApi(`${url}&page=${page}`);
-    console.log(data);
 
     const handleNextPage = () => {
         if (data?.total_pages > page) {
