@@ -1,25 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import cardCover from '../../../assets/onboardcover.jpg';
-import { useState } from "react";
+import SearchBar from "./SearchBar";
 
 export default function Card() {
     const navigate = useNavigate();
-    const [search, setSearch] = useState("");
-    const [type, setType] = useState("movie");
 
     const handleNavigate = () => {
         navigate("/movies");
     };
-    const handleSearch = (e) => {
-        e.preventDefault();
-        navigate("/search", { state: { search, type } });
-    };
 
-    console.log(search, type);
     return (
         <div className="h-screen flex items-center justify-center">
-            <div className="h-1/2 flex flex-col sm:flex-row max-w-4xl rounded-none sm:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#020617] text-white">
+            <div className="h-1/2 flex flex-col sm:flex-row max-w-5xl rounded-none sm:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#020617] text-white">
                 {/* Left content */}
                 <div className="flex-1 p-10 flex flex-col justify-center ">
                     {/* Header */}
@@ -34,29 +27,8 @@ export default function Card() {
                         </p>
                     </div>
                     {/* Search Bar */}
-                    <div className="flex items-center gap-3 mb-6">
-                        <form onSubmit={handleSearch}>
-                            <div className="flex gap-5">
-                                <input
-                                    type="text"
-                                    className="w-full px-4 py-2 rounded-lg bg-[#1e293b] border border-gray-700 placeholder-gray-400 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    placeholder="Search anime..."
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
-                                />
-                                <select onChange={(e) => setType(e.target.value)} value={type} className="p-3 rounded-lg bg-[#1e293b] border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <option value="">Type</option>
-                                    <option value="movie">Movie</option>
-                                    <option value="tv">TV Show</option>
-                                </select>
-                            </div>
-                            <button type="submit" className="p-3 mt-5 rounded-xl bg-blue-600 hover:bg-blue-700 transition-colors">
-                                <div className="flex gap-3">
-                                    Search <Icon icon="iconamoon:search-bold" className="text-white text-2xl" />
-                                </div>
-                            </button>
-                        </form>
-                    </div>
+                    
+                    <SearchBar />
 
                     {/* View Full Site Button */}
                     <div
