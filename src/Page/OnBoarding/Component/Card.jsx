@@ -27,9 +27,9 @@ export default function Card() {
                         </p>
                     </div>
                     {/* Search Bar */}
-                    
-                    <SearchBar />
-
+                    <div className="mb-8">
+                        <SearchBar content={false} />
+                    </div>
                     {/* View Full Site Button */}
                     <div
                         onClick={handleNavigate}

@@ -36,7 +36,9 @@ const SearchModal = ({ open, setOpen }) => {
         <div className="fixed inset-0 z-50 pt-20 bg-black/50 backdrop-blur-sm"
             onClick={handleClose}>
             <div className="w-full px-4 flex justify-center " onClick={(e) => e.stopPropagation()}>
-                <SearchBar />
+                <div className="w-2/6">
+                    <SearchBar content={true} />
+                </div>
             </div>
         </div>
     )
