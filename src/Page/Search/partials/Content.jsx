@@ -36,7 +36,7 @@ export default function Content({ keyword, type, setOpen }) {
     }
 
     return (
-        <div className="mx-auto py-4">
+        <div className="mx-auto py-4 max-h-96 overflow-y-scroll">
             <h2 className="text-xl font-semibold mb-4">Search Results for "{search}"</h2>
             <div className="grid gap-4 md:grid-cols-1">
                 {data.results.map((item, index) => (
