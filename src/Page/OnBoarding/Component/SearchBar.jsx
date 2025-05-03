@@ -1,14 +1,25 @@
 import { useState } from "react"
 import { Icon } from "@iconify/react"
 import Content from "../../Search/partials/Content"
+import { useNavigate } from "react-router-dom"
 
-export default function SearchBar({ content }) {
+export default function SearchBar({ content, setOpen }) {
+    const navigate = useNavigate()
     const [search, setSearch] = useState("")
     const [type, setType] = useState("movie")
 
+    const handleSearch = (e) => {
+        e.preventDefault()
+        if (content === false) {
+            if (search.trim()) {
+                navigate("/search", { state: { search, type } })
+            }
+        }
+    }
+
     return (
         <>
-            <form className="relative">
+            <form onSubmit={handleSearch} className="relative">
                 <div className="flex items-center bg-[#1e293b] border border-gray-700/50 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:border-gray-600 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20">
                     {/* Search Icon Button */}
                     <button
@@ -55,7 +66,7 @@ export default function SearchBar({ content }) {
                     </div>
                 </div>
             </form>
-            {content && search.trim().length >= 3 && <Content keyword={search.trim()} />}
+            {content && search.trim().length >= 3 && <Content keyword={search.trim()} setOpen={setOpen} />}
         </>
     )
 }

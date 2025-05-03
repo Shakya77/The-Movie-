@@ -1,7 +1,7 @@
 import useGetApi from "../../../Hooks/useGetApi"
 import SearchCard from "../../../components/Card/partials/SearchCard"
 
-export default function Content({ keyword, type = "movie" }) {
+export default function Content({ keyword, type = "movie" ,setOpen}) {
     // Use the keyword as the search term
     const search = keyword || ""
 
@@ -41,12 +41,13 @@ export default function Content({ keyword, type = "movie" }) {
     }
 
     return (
-        <div className="container mx-auto py-4">
+        <div className="mx-auto py-4">
             <h2 className="text-xl font-semibold mb-4">Search Results for "{search}"</h2>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-1">
                 {data.results.map((item, index) => (
                     <SearchCard
                         key={item.id || index}
+                        id={item.id}
                         image={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : null}
                         title={item.title || item.name}
                         description={item.overview}
@@ -54,6 +55,7 @@ export default function Content({ keyword, type = "movie" }) {
                         runtime={item.runtime}
                         genre={item.genre_ids} // Note: These are IDs, you might need to map them to actual genre names
                         rating={item.vote_average}
+                        setOpen={setOpen}
                     />
                 ))}
             </div>

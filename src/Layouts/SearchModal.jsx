@@ -37,7 +37,7 @@ const SearchModal = ({ open, setOpen }) => {
             onClick={handleClose}>
             <div className="w-full px-4 flex justify-center " onClick={(e) => e.stopPropagation()}>
                 <div className="w-2/6">
-                    <SearchBar content={true} />
+                    <SearchBar content={true} setOpen={setOpen} />
                 </div>
             </div>
         </div>

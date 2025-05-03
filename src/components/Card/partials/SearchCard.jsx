@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom"
 
-export default function SearchCard({ image, title, description, released, runtime, genre, rating }) {
+export default function SearchCard({ id, image, title, description, released, runtime, genre, rating, setOpen }) {
     // Format runtime to hours and minutes
+    const navigate = useNavigate()
+
     const formatRuntime = (minutes) => {
         if (!minutes) return "N/A"
         const hours = Math.floor(minutes / 60)
@@ -14,8 +17,13 @@ export default function SearchCard({ image, title, description, released, runtim
         return new Date(date).getFullYear()
     }
 
+    const handleClick = (id) => {
+        setOpen(false);
+        navigate(`/movie/details/${id}`)
+    }
+
     return (
-        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden transition-all hover:shadow-md">
+        <div className="cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden transition-all hover:shadow-md" onClick={() => { handleClick(id) }}>
             <div className="flex flex-col sm:flex-row">
                 {/* Standard img tag instead of Next.js Image */}
                 <div className="h-[200px] sm:h-[225px] sm:w-[150px] flex-shrink-0 relative">
