@@ -14,7 +14,7 @@ export default function useGetApi(url) {
             const options = {
                 method: 'GET',
                 headers: myHeaders,
-            }
+            };
 
             const response = await fetch(url, options);
 
@@ -32,8 +32,10 @@ export default function useGetApi(url) {
     };
 
     useEffect(() => {
+        setLoading(true); // ✅ set loading true on URL change
+        setError(null);   // Optional: reset error on new fetch
         fetchData();
-    }, [url]); // Only run once when the component mounts
+    }, [url]);
 
-    return { data, loading, error, fetchData };
+    return { data, loading, error };
 }
