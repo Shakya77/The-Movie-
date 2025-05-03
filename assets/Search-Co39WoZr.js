@@ -1,1 +1,0 @@
-import{b as n,j as e,M as o}from"./index-RbayupIO.js";function r(){const s=n(),{searchSet:t}=s.state||{},a=t?t[t.length-2]:"";return t&&t[t.length-1],e.jsx(o,{children:e.jsx("div",{className:"container mx-auto p-4",children:e.jsxs("h1",{className:"text-3xl font-bold text-center mb-6",children:["Search Results for: ",a," "]})})})}export{r as default};
